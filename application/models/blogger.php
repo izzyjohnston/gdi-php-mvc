@@ -1,15 +1,29 @@
 <?php
-    class Bloggers  extends Model{
+    class Blogger  extends Model{
         /**
          * @static
          * @param int $limit
          * @return array|bool
-         * Function gets all data about bloggers in database, 1000 at a time, ordered by username
+         * Function gets all data about bloggers in database, ordered by username
          */
-        public static function get ($limit = 1000, $page = 0) {
+        public static function getAll () {
 
-            //construct your SQL query-- in English Select all the data about bloggers (every field), order the results by username (alphabetically), limit the results to 1000 on page 0 to start with
-            $sql = 'SELECT * FROM bloggers ORDER BY username DESC LIMIT' . $limit . ' OFFSET' . $page;
+            //construct your SQL query-- select all the data about bloggers (every field), order the results by username (alphabetically),
+            $sql = 'SELECT * FROM bloggers ORDER BY username DESC';
+            //send that query to the Model class that Bloggers extends
+            $results = self::select($sql);
+            //return results to controller
+            return $results;
+        }
+        /**
+         * @static
+         * @param $id
+         * @return array|bool
+         * Function get all the data about one blogger if you know the blogger's id
+         */
+        public static function getOne($id){
+            //construct your SQL query-- select all the data about one blogger by id
+            $sql = 'SELECT * FROM bloggers WHERE id = '. $id . ' LIMIT 1';
             //send that query to the Model class that Bloggers extends
             $results = self::select($sql);
             //return results to controller
@@ -42,7 +56,9 @@
             $fields = self::cleanData($fields);
             //construct sql query to update username
             $sql = 'UPDATE bloggers SET username = "' . $fields['username'] . '" WHERE id = ' . $id;
-
+            $results = self::update($sql);
+           //return results to controller
+           return $results;
         }
 
         public static function destroy ($id) {

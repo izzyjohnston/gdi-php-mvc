@@ -7,10 +7,11 @@
     class Model extends DB{
         public static function select($sql){///The R(ead) of CRUD
             if(self::connect()){
+
                 //initialize the rows of data you might get from your database. If you don't the last line will throw an error because it will try to count something that doesn't exist.
                 $rows = array();
                 ///get the results from the database
-                $results_from_database = mysql_query(self::connect(), $sql);
+                $results_from_database = mysql_query($sql, self::connect());
                 ///while there are results from the database, put the data into our $rows array
                 ///mysql_fetch_assoc puts results into an associative array
                 ///if there is data in that array (i.e. if there is data in the database, assign that data to our $rows array
@@ -31,7 +32,9 @@
         }
         public static function insert($sql){//The C(reate) of CRUD
             if(self::connect()){
+                ///send insert query
                 mysql_query(self::connect(), $sql);
+                //return id of query just inserted
                 return mysql_insert_id();
             }
             else return false;
@@ -39,14 +42,18 @@
         }
         public static function update($sql){//The U(pdate) of CRUD
             if(self::connect()){
+                //send update query
                 mysql_query(self::connect(), $sql);
+                //return true
                 return true;
             }
             else return false;
         }
         public static function delete($sql){//The D(elete) of CRUD
             if(self::connect()){
+                //send delete query
                 mysql_query(self::connect(), $sql);
+                //return true
                 return true;
             }
             else return false;
@@ -54,6 +61,7 @@
 
         public static function cleanData($fields){
             if(self::connect()){
+                //for each of the fields, replace the current value with a cleaned up version of the value so it doesn't hurt the database
                 foreach ($fields as &$field){
                     $field = mysql_real_escape_string(self::connect(), $field);
                 }

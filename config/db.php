@@ -1,9 +1,10 @@
 <?php
     class DB {
         function connect(){
-            $connection_to_database=mysqli_connect (DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD);
+            $connection_to_database=mysql_connect(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD);
+
             if  ($connection_to_database){
-                if(mysql_select_db($connection_to_database, DATABASE_NAME)){
+                if(mysql_select_db(DATABASE_NAME, $connection_to_database)){
                     return $connection_to_database;
                 }
                 else{
