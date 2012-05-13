@@ -25,7 +25,6 @@ define('DATABASE_HOST', 'localhost');
     include_all_php($_SERVER['DOCUMENT_ROOT'].'/'.'application/models');
     include_all_php($_SERVER['DOCUMENT_ROOT'].'/'.'application/controllers');
 ?>
-
 <?php
 /**
  * @param $folder
@@ -37,5 +36,4 @@ function include_all_php($folder){
         require_once $filename;
     }
 }
-
 ?>

@@ -1,0 +1,98 @@
+@import url(http://fonts.googleapis.com/css?family=Nobile);
+body{
+    font-family: 'Nobile', Helvetica, sans-serif; margin:0px;padding:0px;overflow:auto; background: #FEFEFE;
+}
+h2,a, a:hover, a:visited{
+    color:#428a8e;
+    text-decoration: none;
+}
+
+#primary-content{
+    width: 64%;
+    min-width:320px;
+    padding:1%;
+    background: #FEFEFE;
+    float:left;
+}
+#secondary-content{
+    width: 32%;
+    min-width:150px;
+    float:left;
+    padding:1%;
+    background: #DCEBDD;
+    -moz-box-shadow: -1px 1px 3px #888;
+    -webkit-box-shadow: -1px 1px 3px #888;
+    box-shadow: -1px 1px 3px #888;
+    height:100%;
+}
+.clear{
+    clear:both;
+}
+.edit{
+    background: #428a8e;
+    padding:3px;
+    display: inline-block;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: -1px 1px 3px #888;
+    -webkit-box-shadow: -1px 1px 3px #888;
+    box-shadow: -1px 1px 3px #888;
+    cursor: pointer;
+}
+.add{
+    background: #48994d; /* Old browsers */
+
+    padding:3px;
+    display: inline-block;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: -1px 1px 3px #888;
+    -webkit-box-shadow: -1px 1px 3px #888;
+    box-shadow: -1px 1px 3px #888;
+    cursor: pointer;
+}
+.delete{
+    background: #a6504e;
+    padding:3px;
+    display: inline-block;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: -1px 1px 3px #888;
+    -webkit-box-shadow: -1px 1px 3px #888;
+    box-shadow: -1px 1px 3px #888;
+    cursor: pointer;
+    margin-left:2px;
+}
+.icon{
+    height:18px;
+    margin:2px;
+    display:inline;
+    vertical-align: middle;
+}
+.button-text{
+    margin: 0px, 2px;
+    vertical-align: middle;
+    display: inline;
+    vertical-align: middle;
+}
+#new-post, #new-blogger{
+    float:right;
+}
+
+.post{
+    padding:5px;
+}
+.post-text{
+    max-width: 800px;
+}
+
+.post-footer{
+    margin-top:3px;
+    clear:both
+}
+.post-footer .post-date, .post-footer .post-blogger{
+    font-size: 0.8em;
+    float:left;
+    margin-left:40px;
+    color:#333;
+}

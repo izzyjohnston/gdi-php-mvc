@@ -1,9 +1,8 @@
 <?php require_once ('config/config.php');?>
-
 <?php
     include 'application/views/template/header.php';
 ?>
-
+<div id="content" class="clear" style="overflow: hidden">
 <div id="primary-content">
 
     <?php
@@ -18,6 +17,7 @@
         include 'application/views/bloggers/list.php';
     ?>
 
+</div>
 </div>
 
 <?php
