@@ -1,6 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Nobile);
 body{
-    font-family: 'Nobile', Helvetica, sans-serif; margin:0px;padding:0px;overflow:auto; background: #FEFEFE;
+    font-family: 'Nobile', Helvetica, sans-serif; margin:0;padding:0;overflow:auto; background: #FEFEFE;
 }
 h2,a, a:hover, a:visited{
     color:#428a8e;
@@ -16,7 +16,7 @@ h2,a, a:hover, a:visited{
 }
 #secondary-content{
     width: 32%;
-    min-width:150px;
+    min-width:215px;
     float:left;
     padding:1%;
     background: #DCEBDD;
@@ -95,4 +95,40 @@ h2,a, a:hover, a:visited{
     float:left;
     margin-left:40px;
     color:#333;
+}
+input, button {
+    display: block;
+    font-family: 'Nobile';
+    font-size: 1.1em;
+    color: #333;
+    border: #ccc 1.0 solid;
+    -moz-border-radius: 2px;
+       border-radius: 2px;
+    padding:5px;
+}
+textarea{
+    display: block;
+    font-family: 'Nobile';
+    font-size: 1.0em;
+    color: #333;
+    -moz-border-radius: 2px;
+       border-radius: 2px;
+    border: #ccc 1.0 solid;
+    padding:5px;
+    width:450px;
+    height: 200px;
+    margin:2px;
+}
+#add-new{
+    display: none;
+}
+.edit-current{
+    display: none;
+}
+.delete-current{
+    display: none;
+}
+.warning{
+    font-size: 1.3em;
+    font-weight: bold;
 }

@@ -33,7 +33,10 @@
         public static function insert($sql){//The C(reate) of CRUD
             if(self::connect()){
                 ///send insert query
-                mysql_query(self::connect(), $sql);
+                $results_from_database = mysql_query($sql, self::connect());
+                if (!$results_from_database){
+                		return 'Error adding submitted data: ' . mysql_error();
+                }
                 //return id of query just inserted
                 return mysql_insert_id();
             }
@@ -43,7 +46,10 @@
         public static function update($sql){//The U(pdate) of CRUD
             if(self::connect()){
                 //send update query
-                mysql_query(self::connect(), $sql);
+                $results_from_database = mysql_query($sql, self::connect());
+                if (!$results_from_database){
+                        return 'Error updating submitted data: ' . mysql_error();
+                }
                 //return true
                 return true;
             }
@@ -52,7 +58,10 @@
         public static function delete($sql){//The D(elete) of CRUD
             if(self::connect()){
                 //send delete query
-                mysql_query(self::connect(), $sql);
+                $results_from_database = mysql_query($sql, self::connect());
+                if (!$results_from_database){
+                        return 'Error deleting submitted data: ' . mysql_error();
+                }
                 //return true
                 return true;
             }
@@ -63,7 +72,7 @@
             if(self::connect()){
                 //for each of the fields, replace the current value with a cleaned up version of the value so it doesn't hurt the database
                 foreach ($fields as &$field){
-                    $field = mysql_real_escape_string(self::connect(), $field);
+                    $field = mysql_real_escape_string($field, self::connect());
                 }
                 return $fields;
             }

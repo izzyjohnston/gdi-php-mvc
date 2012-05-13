@@ -41,7 +41,7 @@
             $fields = self::cleanData($fields);
             //construct sql query insert into the four database fields, the four values from our form
             $sql = 'INSERT INTO posts (title, text, user_id, date_created)
-                   VALUES ("' . $fields['title'] . '", "' . $fields['text'] . ', '. $fields['user_id'].', '. $date .'")';
+                   VALUES ("' . $fields['title'] . '", "' . $fields['text'] . '", ' . $fields['user_id']. ', "'. $date .'")';
             //send that query to the Model class that Posts extends
             $results = self::insert($sql);
             //return results to controller
@@ -52,7 +52,7 @@
              ///clean all fields so they are not harmful to the database
             $fields = self::cleanData($fields);
             //construct sql query to update username
-            $sql = 'UPDATE posts SET title = "' . $fields['title'] . '" text = "' . $fields['text'] . '" WHERE id = ' . $id;
+            $sql = 'UPDATE posts SET title = "' . $fields['title'] . '", text = "' . $fields['text'] . '" WHERE id = ' . $id;
             $results = self::update($sql);
            //return results to controller
            return $results;

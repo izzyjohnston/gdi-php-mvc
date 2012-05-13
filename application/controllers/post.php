@@ -1,14 +1,35 @@
 <?php
     class Post_Controller {
         public function _list(){
+            $warning = "";
             if (isset($_POST['delete_post'])) {
-               Post::destroy($_POST['id']);
+               ///check if a user is logged in and if the logged in user is the one that wrote the blog post
+               if(isset($_SESSION['user_id']) && $_SESSION['user_id']==$_POST['user_id']){
+                   Post::destroy($_POST['id']);
+               }
+               else{
+                   $warning = 'Sorry, you do not have permissions to delete that post';
+               }
+
             }
             if (isset($_POST['update_post'])){
-                Post::edit($_POST, $_POST['id']);
+                ///check if a user is logged in and if the logged in user is the one that wrote the blog post
+                if(isset($_SESSION['user_id']) && $_SESSION['user_id']==$_POST['user_id']){
+                    Post::edit($_POST, $_POST['id']);
+                }
+                else{
+                   $warning = 'Sorry, you do not have permissions to edit that post';
+                }
             }
             if (isset($_POST['create_post'])){
-                Post::create($_POST);
+                ///check if a user is logged in
+                if(isset($_SESSION['user_id'])){
+                    $_POST['user_id'] = $_SESSION['user_id'];
+                    Post::create($_POST);
+                }
+                else{
+                   $warning = 'Sorry, you must be logged in to submit a post';
+                }
             }
             $posts_array = Post::getAll();
             if($posts_array){
@@ -18,14 +39,15 @@
                 }
             }
 
-            return array('posts' => $posts_array);
+            return array('posts' => $posts_array,
+                         'warning' => $warning);
         }
         public function _view($id){
             $post = Post::getOne($id);
             if($post){
                 $post['username'] = Blogger::getOne($post['user_id']);
             }
-            return array('post'=>$post);
+            return array('post'=>$post,);
         }
 
     }
