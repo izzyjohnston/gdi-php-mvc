@@ -27,7 +27,12 @@
             //send that query to the Model class that Bloggers extends
             $results = self::select($sql);
             //return results to controller
-            return $results;
+            if($results){
+                return $results[0];
+            }
+            else{
+                return false;
+            }
         }
         /**
          * @static
@@ -41,10 +46,10 @@
             ///clean all fields so they are not harmful to the database
             $fields = self::cleanData($fields);
             ///scramble the password
-            $password = md5($fields['password'], true);
+            $password = md5($fields['password'], false);
             //construct sql query insert into the four database fields, the four values from our form
             $sql = 'INSERT INTO bloggers (username, email, password, date_created)
-                   VALUES ("' . $fields['username'] . '", "' . $fields['email'] . ', '. $password .', '. $date .'")';
+                   VALUES ("' . $fields['username'] . '", "' . $fields['email'] . '", "'. $password .'", "'. $date .'")';
             //send that query to the Model class that Bloggers extends
             $results = self::insert($sql);
             //return results to controller
@@ -54,8 +59,28 @@
         public static function edit ($fields, $id) {
              ///clean all fields so they are not harmful to the database
             $fields = self::cleanData($fields);
+            $hasPreviousField = false;
             //construct sql query to update username
-            $sql = 'UPDATE bloggers SET username = "' . $fields['username'] . '" WHERE id = ' . $id;
+            $sql = 'UPDATE bloggers SET';
+            if($fields['username']!=''){
+                $sql.= ' username = "' . $fields['username'] . '"';
+                $hasPreviousField = true;
+            }
+            if($fields['email']!=''){
+                if($hasPreviousField){
+                    $sql .= ',';
+                }
+                $sql.= ' email = "' . $fields['email'] . '"';
+                $hasPreviousField = true;
+            }
+            if($fields['password']!=''){
+                if($hasPreviousField){
+                    $sql .= ',';
+                }
+                $password = md5($fields['password'], false);
+                $sql.= ' password = "' . $password . '"';
+            }
+            $sql .= ' WHERE id = ' . $id;
             $results = self::update($sql);
            //return results to controller
            return $results;
@@ -68,6 +93,24 @@
             $results = self::delete($sql);
             //return results to controller
             return $results;
+        }
+
+        public static function login ($fields){
+            $fields = self::cleanData($fields);
+            //construct your SQL query-- select all the data about one blogger by id
+            $password = md5($fields['password'], false);
+            $sql = 'SELECT * FROM bloggers WHERE username = "'. $fields['username'] . '" and password = "' .$password. '"  LIMIT 1';
+            //send that query to the Model class that Bloggers extends
+            $results = self::select($sql);
+            //return results to controller
+            if($results){
+                return $results[0];
+            }
+            else{
+                return false;
+            }
+
+
         }
     }
 ?>

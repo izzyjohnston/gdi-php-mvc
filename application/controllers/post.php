@@ -35,19 +35,12 @@
             if($posts_array){
                 foreach($posts_array as &$post){
                     $blogger = Blogger::getOne($post['user_id']);
-                    $post['username'] = $blogger[0]['username'];
+                    $post['username'] = $blogger['username'];
                 }
             }
 
             return array('posts' => $posts_array,
                          'warning' => $warning);
-        }
-        public function _view($id){
-            $post = Post::getOne($id);
-            if($post){
-                $post['username'] = Blogger::getOne($post['user_id']);
-            }
-            return array('post'=>$post,);
         }
 
     }

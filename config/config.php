@@ -14,10 +14,7 @@ define('DATABASE_PASSWORD', 'root');
 ///For all local database users, this is localhost.
 ///For many hosted users (those on bluehost, rackspace, etc.) it is also localhost. But some have a special host name like Dreamhost that they will give you when you sign up for a database on their server.
 define('DATABASE_HOST', 'localhost');
-
-///temporarily set SESSION until logging in works
 session_start();
-$_SESSION['user_id'] = 1;
 ?>
 <?php
 /**

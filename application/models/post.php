@@ -26,7 +26,12 @@
             //send that query to the Model class that Posts extends
             $results = self::select($sql);
             //return results to controller
-            return $results;
+            if($results){
+                return $results[0];
+            }
+            else{
+                return false;
+            }
         }
         /**
          * @static

@@ -1,14 +1,5 @@
 $(document).ready(function() {
     /**
-     * allow resizing of main divs to be viewed on mobile
-     * In an ideal world, this would be done with responsive css, but I am a back end developer
-     */
-    if($(window).width()<650){
-           $('#primary-content').css('width', '100%');
-           $('#secondary-content').css('width', '100%');
-           $('textarea').css('width', '90%');
-       }
-    /**
      * Toggle form if someone clicks on Add new blog post button
      */
     $('#new-post').bind('click', function(){
@@ -44,24 +35,57 @@ $(document).ready(function() {
             $(this).children('.button-text').html(' Delete blog post');
         }
     });
+    /**
+     * Toggle form if someone clicks on Register blogger button
+     */
+    $('#new-blogger').bind('click', function(){
+        $('#register-blogger').toggle();
+        if($(this).children('.button-text').html()==' Register'){
+            $(this).children('.button-text').html(' Cancel');
+        }
+        else{
+            $(this).children('.button-text').html(' Register');
+        }
+    });
+    /**
+     * Toggle form if someone clicks on Edit blogger button
+     */
+    $('.edit-blogger').bind('click', function(){
+       $(this).siblings('.edit-current-blogger').toggle();
+    });
+    /**
+     * Toggle form if someone clicks on Delete blogger post button
+     */
+    $('.delete-blogger').bind('click', function(){
+       $(this).siblings('.delete-current-blogger').toggle();
+    });
+    /**
+     * Toggle form if someone clicks on Login
+     */
+    $('#login').bind('click', function(){
+       $(this).siblings('#login-blogger').toggle();
+        if($(this).children('.button-text').html()==' Login'){
+            $(this).children('.button-text').html(' Cancel');
+        }
+        else{
+            $(this).children('.button-text').html(' Login');
+        }
+    });
+    /**
+     * Toggle form if someone clicks on Login
+     */
+    $('#logout').bind('click', function(){
+       $(this).siblings('#logout-blogger').toggle();
+        if($(this).children('.button-text').html()==' Logout'){
+            $(this).children('.button-text').html(' Cancel');
+        }
+        else{
+            $(this).children('.button-text').html(' Logout');
+        }
+    });
 
 
 
-});
-/**
- * allow resizing of main divs to be viewed on mobile
- * In an ideal world, this would be done with responsive css, but I am a back end developer
- */
-$(window).resize(function() {
-   if($(window).width()<650){
-       $('#primary-content').css('width', '100%');
-       $('#secondary-content').css('width', '100%');
-       $('textarea').css('width', '90%');
-   }
-    else{
-       $('#primary-content').css('width', '64%');
-       $('#secondary-content').css('width', '32%');
-       $('textarea').css('width', '450px');
-   }
+
 
 });

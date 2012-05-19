@@ -15,8 +15,10 @@
                 ///while there are results from the database, put the data into our $rows array
                 ///mysql_fetch_assoc puts results into an associative array
                 ///if there is data in that array (i.e. if there is data in the database, assign that data to our $rows array
-                while ($row_from_database = mysql_fetch_assoc($results_from_database)) {
-                    $rows[] = $row_from_database;
+                if($results_from_database){
+                    while ($row_from_database = mysql_fetch_assoc($results_from_database)) {
+                        $rows[] = $row_from_database;
+                    }
                 }
                 ///if there was data from the database, return that data so we can use it in the controller
                 if(count($rows)>0){

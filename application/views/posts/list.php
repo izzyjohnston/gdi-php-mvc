@@ -2,6 +2,7 @@
     //initialize data from controller
     $data =  Post_Controller::_list();
 ?>
+<?php if($data['warning']!='') echo $data['warning']?>
 <div id="posts-list">
     <div id = "new-post" class="add"><img class="icon" src='/public/images/blog.png'/><div class="button-text"> Add new blog post</div></div>
     <h2>Blog Posts</h2>
@@ -42,7 +43,7 @@
                     * Sends hidden value 'update_post' so that the controller knows
                     * which form was sent
                     * Sends hidden value 'id' so that the controller knows which post
-                    * to delete
+                    * to edit
                     */ ?>
             <div class= "edit-current">
                         <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
