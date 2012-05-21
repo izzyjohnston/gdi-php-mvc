@@ -1,6 +1,6 @@
 <?php
     class DB {
-        function connect(){
+        public static function  connect(){
             $connection_to_database=mysql_connect(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD);
 
             if  ($connection_to_database){
