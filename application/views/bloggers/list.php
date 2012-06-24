@@ -1,5 +1,5 @@
 <?php $data =  Blogger_Controller::_list();?>
-<?php if($data['bloggerWarning']) echo $data['bloggerWarning']?>
+<?php if($data['bloggerWarning']!="") echo $data['bloggerWarning']?>
 <div id="bloggers-list">
     <div id = "new-blogger" class="add"><img class="icon" src='/public/images/add.png'/><div class="button-text"> Register</div></div>
     <?php if(!isset($_SESSION['user_id'])): ?><div id = "login" class="edit"><img class="icon" src='/public/images/pencil.png'/><div class="button-text"> Login</div></div>

@@ -1,6 +1,6 @@
 <?php
     class Blogger_Controller {
-        public function _list(){
+        public static function _list(){
             $warning = "";
             ///delete blogger form controller
             if (isset($_POST['delete_blogger'])) {
@@ -46,7 +46,8 @@
                 //check if all fields are present
                 //NOTE: in most real world application this check would be done in Javascript
                 //      in order to avoid refreshing the page and losing the user's data
-                if(isset($_POST['username'])&& isset($_POST['email']) && isset($_POST['password']) && isset($_POST['confirm_password'])){
+                if($_POST['username'] != "" && $_POST['email'] != "" && $_POST['password'] != "" && $_POST['confirm_password'] != ""){
+
                     //check if password and confirm password match
                     //NOTE: in most real world application this check would be done in Javascript
                     //      in order to avoid refreshing the page and losing the user's data
