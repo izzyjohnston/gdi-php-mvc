@@ -46,7 +46,7 @@
             ///clean all fields so they are not harmful to the database
             $fields = Model::cleanData($fields);
             ///scramble the password
-            $password = md5($fields['password'], false);
+            $password = $fields['password'];//md5($fields['password'], false);
             //construct sql query insert into the four database fields, the four values from our form
             $sql = 'INSERT INTO bloggers (username, email, password, date_created)
                    VALUES ("' . $fields['username'] . '", "' . $fields['email'] . '", "'. $password .'", "'. $date .'")';
@@ -77,7 +77,7 @@
                 if($hasPreviousField){
                     $sql .= ',';
                 }
-                $password = md5($fields['password'], false);
+                $password = $fields['password'];//md5($fields['password'], false);
                 $sql.= ' password = "' . $password . '"';
             }
             $sql .= ' WHERE id = ' . $id;
