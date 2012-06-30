@@ -2,10 +2,10 @@
 <?php if($data['bloggerWarning']!="") echo $data['bloggerWarning']?>
 <div id="bloggers-list">
     <div id = "new-blogger" class="add"><img class="icon" src='/public/images/add.png'/><div class="button-text"> Register</div></div>
-    <?php if(!isset($_SESSION['user_id'])): ?><div id = "login" class="edit"><img class="icon" src='/public/images/pencil.png'/><div class="button-text"> Login</div></div>
-    <?php else: ?>
-        <div id = "logout" class="delete"><img class="icon" src='/public/images/delete.png'/><div class="button-text"> Logout</div></div>
-    <?php endif;?>
+    <?php /**
+         * if user is logged in, show login button, otherwise (else), show logout button
+         */
+    ?>
     <br class="clear">
     <?php /**
             * Form to login. On page load, this form is hidden
@@ -15,12 +15,7 @@
             * which form was sent
             */ ?>
     <div id= "login-blogger">
-            <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
-                <label>Username</label><input type="text" name ="username"/>
-                <label>Password</label><input type="password" name ="password"/>
-                <input type = "hidden" value ="true" name="login_blogger"/>
-                <button type = "submit" value="Login" class="edit"><img class="icon" src='/public/images/add.png'/><div class="button-text"> Login</div></button>
-            </form>
+
         </div>
     <?php /**
             * Form to logout. On page load, this form is hidden
@@ -31,11 +26,7 @@
             * Sends no data in the $_POST because we are just unsetting the session
             */ ?>
     <div id= "logout-blogger">
-        <p class="warning">Are you sure you want to logout?</p>
-        <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
-            <input type = "hidden" value ="true" name="logout_blogger"/>
-            <button type = "submit" value="Logout" class="delete"><img class="icon" src='/public/images/delete.png'/><div class="button-text"> Logout</div></button>
-        </form>
+
     </div>
     <?php /**
             * Form to register new blogger. On page load, this form is hidden

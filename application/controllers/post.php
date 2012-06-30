@@ -4,32 +4,20 @@
             $warning = "";
             if (isset($_POST['delete_post'])) {
                ///check if a user is logged in and if the logged in user is the one that wrote the blog post
-               if(isset($_SESSION['user_id']) && $_SESSION['user_id']==$_POST['user_id']){
                    Post::destroy($_POST['id']);
-               }
-               else{
-                   $warning = 'Sorry, you do not have permissions to delete that post';
-               }
+               //otherwise say the user doesn't have permission
 
             }
             if (isset($_POST['update_post'])){
                 ///check if a user is logged in and if the logged in user is the one that wrote the blog post
-                if(isset($_SESSION['user_id']) && $_SESSION['user_id']==$_POST['user_id']){
                     Post::edit($_POST, $_POST['id']);
-                }
-                else{
-                   $warning = 'Sorry, you do not have permissions to edit that post';
-                }
+                //otherwise say the user doesn't have permission
             }
             if (isset($_POST['create_post'])){
-                ///check if a user is logged in
-                if(isset($_SESSION['user_id'])){
-                    $_POST['user_id'] = $_SESSION['user_id'];
+                ///check if a user is logged in and set the post's user_id to the id of the logged in user
+
                     Post::create($_POST);
-                }
-                else{
-                   $warning = 'Sorry, you must be logged in to submit a post';
-                }
+                //otherwise say the user doesn't have permission
             }
             $posts_array = Post::getAll();
             if($posts_array){

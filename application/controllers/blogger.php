@@ -5,17 +5,13 @@
             ///delete blogger form controller
             if (isset($_POST['delete_blogger'])) {
                ///check if a user is logged in and if the logged in user is the one trying to delete themselves
-               if(isset($_SESSION['user_id']) && $_SESSION['user_id']==$_POST['id']){
                    Blogger::destroy($_POST['id']);
-               }
-               else{
-                   $warning = 'Sorry, you do not have permissions to delete that user';
-               }
+               //otherwise say the user doesn't have permission
             }
             //update blogger form controller
             if (isset($_POST['update_blogger'])){
                  ///check if a user is logged in and if the logged in user is the one trying to edit the user
-                if(isset($_SESSION['user_id']) && $_SESSION['user_id']==$_POST['id']){
+
                     //if new password was not sent, edit the blogger's username or email
                     if($_POST['password']==''){
                         Blogger::edit($_POST, $_POST['id']);
@@ -24,7 +20,7 @@
                     else if($_POST['password']!='' && $_POST['old_password']!=''){
                         //get old password for blogger and check that it matches
                         $blogger = Blogger::getOne($_POST['id']);
-                        $old_password = md5($_POST['old_password'], false);
+                        $old_password = "";///scramble password to compare
                         if($old_password == $blogger['password']){
                             Blogger::edit($_POST, $_POST['id']);
                         }
@@ -35,11 +31,7 @@
                     else{
                         $warning = 'You must provide an old password to change passwords.';
                     }
-
-                }
-                else{
-                   $warning = 'Sorry, you do not have permissions to edit that user';
-                }
+                  //otherwise say the user doesn't have permission
             }
             //create blogger form controller
             if (isset($_POST['create_blogger'])){
@@ -64,22 +56,15 @@
                 }
 
             }
+            /**
+             * login blogger with login function in blogger model set $_SESSION['user_id']
+             */
             if(isset($_POST['login_blogger'])){
-                if($_POST['username']!='' && $_POST['password']!=''){
-                    $blogger = Blogger::login($_POST);
-                    if($blogger){
-                        $_SESSION['user_id'] = $blogger['id'];
-                    }
-                    else{
-                        $warning = 'No blogger with that username and database exists in our database';
-                    }
-                }
-                else{
-                    $warning = 'Please enter both username and password';
-                }
             }
+            /**
+             * log out blogger by unsetting $_SESSION
+             */
             if(isset($_POST['logout_blogger'])){
-                unset($_SESSION['user_id']);
             }
             $blogger_array = Blogger::getAll();
             return array('bloggers' => $blogger_array,

@@ -94,21 +94,16 @@
             //return results to controller
             return $results;
         }
-
+        /**
+         * @static
+         * @param $fields
+         * @return bool
+         *
+         */
         public static function login ($fields){
-            $fields = Model::cleanData($fields);
-            //construct your SQL query-- select all the data about one blogger by id
-            $password = md5($fields['password'], false);
-            $sql = 'SELECT * FROM bloggers WHERE username = "'. $fields['username'] . '" and password = "' .$password. '"  LIMIT 1';
-            //send that query to the Model class that Bloggers extends
-            $results = Model::select($sql);
-            //return results to controller
-            if($results){
-                return $results[0];
-            }
-            else{
-                return false;
-            }
+           //create a function that looks for a user with given username and password
+            //either return the user like in getOne()
+            //or return false
 
 
         }
