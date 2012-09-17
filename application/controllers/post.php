@@ -21,7 +21,7 @@
             }
             $posts_array = Post::getAll();
             if($posts_array){
-                foreach($posts_array as $post){
+                foreach($posts_array as &$post){
                     $blogger = Blogger::getOne($post['user_id']);
                     $post['username'] = $blogger['username'];
                 }
