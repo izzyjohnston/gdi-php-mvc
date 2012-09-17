@@ -11,6 +11,5 @@
           * There are classes "blogger" and "blogger-name" in the css file if you want your
           * list of bloggers to look like the one in the sample.
           */
-    ?>
-
+?>
 </div>
